@@ -524,8 +524,9 @@ class _TransformerPageViewState extends State<TransformerPageView> {
       _fromIndex = _activeIndex = _pageController.initialPage;
       if (!created) {
         int initPage = _pageController.getRealIndexFromRenderIndex(index);
-        _pageController.animateToPage(initPage,
-            duration: widget.duration, curve: widget.curve);
+        if (_pageController.hasClients) { 
+          _pageController.animateToPage(initPage,duration: widget.duration, curve: widget.curve);
+        }
       }
     }
     if (_transformer != null)
